@@ -7,8 +7,9 @@ const textAreaAuthor = document.getElementById("author");
 const textAreaPage = document.getElementById("page");
 const buttonSubmit = document.querySelector(".submit");
 const buttonNew = document.querySelector(".new");
-const library = document.querySelector(".books-container");
+const library = document.querySelector(".container");
 const catalogContainer = document.querySelector(".books-container");
+const overlay = document.querySelector(".overlay");
 
 let myLibrary = [];
 
@@ -52,3 +53,19 @@ const newCard = function () {
   catalogContainer.appendChild(div);
   div.textContent = catalog;
 };
+
+buttonNew.addEventListener("click", function () {
+  const modal = document.querySelector(buttonNew.dataset.modalTarget);
+  openModal(modal);
+});
+
+const openModal = function (modal) {
+  if (modal === null) return;
+  library.classList.add("active");
+  overlay.classList.add("active");
+};
+
+overlay.addEventListener("click", function () {
+  library.classList.remove("active");
+  overlay.classList.remove("active");
+});
