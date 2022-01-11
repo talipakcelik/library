@@ -39,12 +39,14 @@ buttonSubmit.addEventListener("click", function () {
 });
 
 let catalog = "";
+let index = "";
 
 const loopBooks = function () {
-  const values = Object.values(myLibrary);
-
-  for (const { title, author, pages } of values) {
+  const entries = Object.entries(myLibrary);
+  ///
+  for (const [item, { title, author, pages }] of entries) {
     catalog = `${title} ${author} ${pages}`;
+    index = item;
   }
 };
 
@@ -52,7 +54,23 @@ const newCard = function () {
   const div = document.createElement("div");
   catalogContainer.appendChild(div);
   div.textContent = catalog;
+  ///
+  const button = document.createElement("button");
+  div.appendChild(button);
+  button.classList.add("delete");
+  button.textContent = "Delete";
+  /// data attribute
+  button.setAttribute("data-index", `${Number(index)}`);
 };
+
+catalogContainer.addEventListener("click", function (e) {
+  if (e.target.classList.contains("delete")) {
+    myLibrary.splice(
+      document.querySelector(".delete").getAttribute("data-index"),
+      1
+    );
+  }
+});
 
 buttonNew.addEventListener("click", function () {
   const modal = document.querySelector(buttonNew.dataset.modalTarget);
