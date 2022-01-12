@@ -30,8 +30,6 @@ function addBookToLibrary() {
   myLibrary.push(book1);
 }
 
-const pusu = new Book("Pusu", "Janka", "215", "okundu");
-
 buttonSubmit.addEventListener("click", function () {
   addBookToLibrary();
   loopBooks();
@@ -53,21 +51,11 @@ const loopBooks = function () {
 
 const newCard = function () {
   catalogContainer.innerHTML += `<div> <div>${catalog}</div> <button data-id="${idTag}">Delete</button> </div>`;
-  // const div = document.createElement("div");
-  // catalogContainer.appendChild(div);
-  // div.textContent = catalog;
-  ///
-  // const button = document.createElement("button");
-  // div.appendChild(button);
-  // button.classList.add("delete");
-  // button.textContent = "Delete";
-  /// data attribute
-  // button.setAttribute("data-index", `${idTag}`);
 };
 
 catalogContainer.addEventListener("click", function (e) {
   if (e.target.getAttribute("data-id")) {
-    console.log(e.target.parentElement.children);
+    e.target.parentElement.remove();
     myLibrary = myLibrary.filter(function (el) {
       return el.id !== e.target.getAttribute("data-id");
     });
@@ -90,5 +78,3 @@ overlay.addEventListener("click", function () {
   library.classList.remove("active");
   overlay.classList.remove("active");
 });
-
-let uuid = self.crypto.randomUUID();
