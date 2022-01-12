@@ -17,6 +17,7 @@ function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
+  this.id = self.crypto.randomUUID();
   // this.read = read;
 }
 
@@ -38,35 +39,38 @@ buttonSubmit.addEventListener("click", function () {
 });
 
 let catalog = "";
-let index = "";
+let idTag = "";
 
 const loopBooks = function () {
-  const entries = Object.entries(myLibrary);
-  ///
-  for (const [item, { title, author, pages }] of entries) {
+  const values = Object.values(myLibrary);
+
+  for (const { title, author, pages, id } of values) {
     catalog = `${title} ${author} ${pages}`;
-    index = item;
+    idTag = id;
   }
+  ///
 };
 
 const newCard = function () {
-  const div = document.createElement("div");
-  catalogContainer.appendChild(div);
-  div.textContent = catalog;
+  catalogContainer.innerHTML += `<div> <div>${catalog}</div> <button data-id="${idTag}">Delete</button> </div>`;
+  // const div = document.createElement("div");
+  // catalogContainer.appendChild(div);
+  // div.textContent = catalog;
   ///
-  const button = document.createElement("button");
-  div.appendChild(button);
-  button.classList.add("delete");
-  button.textContent = "Delete";
+  // const button = document.createElement("button");
+  // div.appendChild(button);
+  // button.classList.add("delete");
+  // button.textContent = "Delete";
   /// data attribute
-  button.setAttribute("data-index", `${Number(index)}`);
+  // button.setAttribute("data-index", `${idTag}`);
 };
 
 catalogContainer.addEventListener("click", function (e) {
-  if (e.target.classList.contains("delete")) {
-    index--;
-    myLibrary.splice(e.target.getAttribute("data-index"), 1);
-    e.target.parentNode.remove();
+  if (e.target.getAttribute("data-id")) {
+    console.log(e.target.parentElement.children);
+    myLibrary = myLibrary.filter(function (el) {
+      return el.id !== e.target.getAttribute("data-id");
+    });
     console.log(myLibrary);
   }
 });
@@ -86,3 +90,5 @@ overlay.addEventListener("click", function () {
   library.classList.remove("active");
   overlay.classList.remove("active");
 });
+
+let uuid = self.crypto.randomUUID();
