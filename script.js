@@ -4,7 +4,7 @@ const textArea = document.querySelectorAll("textarea");
 const textAreaTitle = document.getElementById("title");
 const textAreaAuthor = document.getElementById("author");
 const textAreaPage = document.getElementById("page");
-const buttonSubmit = document.querySelector(".submit");
+const buttonSubmit = document.querySelector("#submit");
 const buttonNew = document.querySelector(".new");
 const library = document.querySelector(".container");
 const catalogContainer = document.querySelector(".books-container");
@@ -31,10 +31,19 @@ function addBookToLibrary() {
   myLibrary.push(book1);
 }
 
-buttonSubmit.addEventListener("click", function () {
-  addBookToLibrary();
-  loopBooks();
-  newCard();
+buttonSubmit.addEventListener("click", function (e) {
+  if (
+    textAreaTitle.value.length > 0 &&
+    textAreaAuthor.value.length > 0 &&
+    textAreaPage.value.length > 0
+  ) {
+    addBookToLibrary();
+    loopBooks();
+    newCard();
+    textAreaTitle.value = "";
+    textAreaAuthor.value = "";
+    textAreaPage.value = "";
+  }
 });
 
 let catalog = "";
