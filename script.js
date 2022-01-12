@@ -1,5 +1,4 @@
 "use strict";
-
 //// DOM
 const textArea = document.querySelectorAll("textarea");
 const textAreaTitle = document.getElementById("title");
@@ -10,6 +9,7 @@ const buttonNew = document.querySelector(".new");
 const library = document.querySelector(".container");
 const catalogContainer = document.querySelector(".books-container");
 const overlay = document.querySelector(".overlay");
+const readBox = document.getElementById("read");
 
 let myLibrary = [];
 
@@ -18,15 +18,16 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.id = self.crypto.randomUUID();
-  // this.read = read;
+  this.read = read;
 }
 
 function addBookToLibrary() {
   const title = textAreaTitle.value;
   const author = textAreaAuthor.value;
-  const page = Number(textAreaPage.value);
+  const page = textAreaPage.value;
+  const read = readBox.checked;
 
-  const book1 = new Book(title, author, page);
+  const book1 = new Book(title, author, page, read);
   myLibrary.push(book1);
 }
 
@@ -38,19 +39,22 @@ buttonSubmit.addEventListener("click", function () {
 
 let catalog = "";
 let idTag = "";
+let readB;
 
 const loopBooks = function () {
   const values = Object.values(myLibrary);
 
-  for (const { title, author, pages, id } of values) {
+  for (const { title, author, pages, id, read } of values) {
     catalog = `${title} ${author} ${pages}`;
     idTag = id;
+    readB = read;
   }
-  ///
 };
 
 const newCard = function () {
-  catalogContainer.innerHTML += `<div> <div>${catalog}</div> <button data-id="${idTag}">Delete</button> </div>`;
+  catalogContainer.innerHTML += `<div> <div>${catalog}</div> 
+  <button data-id="${idTag}">Delete</button> 
+  <button class="check">${readB}</button> </div>`;
 };
 
 catalogContainer.addEventListener("click", function (e) {
@@ -61,8 +65,23 @@ catalogContainer.addEventListener("click", function (e) {
     });
     console.log(myLibrary);
   }
+  if (e.target.classList.contains("check")) {
+    if (readB === true) {
+      readB = false;
+      e.target.textContent = "Not read";
+    } else {
+      e.target.textContent = "Read";
+      readB = true;
+    }
+  }
 });
 
+readBox.addEventListener("change", function () {
+  if (readBox.checked) {
+  }
+});
+
+//// overlay and transition
 buttonNew.addEventListener("click", function () {
   const modal = document.querySelector(buttonNew.dataset.modalTarget);
   openModal(modal);
