@@ -39,7 +39,7 @@ buttonSubmit.addEventListener("click", function () {
 
 let catalog = "";
 let idTag = "";
-let readB;
+let readCheck;
 
 const loopBooks = function () {
   const values = Object.values(myLibrary);
@@ -47,15 +47,15 @@ const loopBooks = function () {
   for (const { title, author, pages, id, read } of values) {
     catalog = `${title} ${author} ${pages}`;
     idTag = id;
-    if (read === true) readB = "Read";
-    else readB = "Not read";
+    if (read === true) readCheck = "Read";
+    else readCheck = "Not read";
   }
 };
 
 const newCard = function () {
   catalogContainer.innerHTML += `<div> <div>${catalog}</div> 
   <button data-id="${idTag}">Delete</button> 
-  <button id="${idTag}" class="check">${readB}</button> </div>`;
+  <button id="${idTag}" class="check">${readCheck}</button> </div>`;
 };
 
 catalogContainer.addEventListener("click", function (e) {
@@ -71,14 +71,10 @@ catalogContainer.addEventListener("click", function (e) {
       return el.id === e.target.getAttribute("id");
     });
     findBook.toggle();
-    console.log(findBook);
-    if (readB === "Read") {
-      readB = "Not read";
+    if (e.target.textContent === "Read") {
       e.target.textContent = "Not read";
-      // myLibrary.
     } else {
       e.target.textContent = "Read";
-      readB = "Read";
     }
   }
 });
