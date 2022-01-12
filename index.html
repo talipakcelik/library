@@ -19,9 +19,12 @@
       <button data-modal-target=".container" class="new">New book</button>
       <section>
         <div class="container">
-          <textarea name="title" id="title" cols="30" rows="2"></textarea>
-          <textarea name="author" id="author" cols="30" rows="2"></textarea>
-          <textarea name="page" id="page" cols="30" rows="2"></textarea>
+          <label for="title">title</label>
+          <input type="text" id="title" name="title" />
+          <label for="author">author</label>
+          <input type="text" id="author" name="author" />
+          <label for="page">pages</label>
+          <input type="number" id="page" name="page" />
           <button class="submit">Submit</button>
         </div>
       </section>
