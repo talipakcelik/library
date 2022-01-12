@@ -47,14 +47,15 @@ const loopBooks = function () {
   for (const { title, author, pages, id, read } of values) {
     catalog = `${title} ${author} ${pages}`;
     idTag = id;
-    readB = read;
+    if (read === true) readB = "Read";
+    else readB = "Not read";
   }
 };
 
 const newCard = function () {
   catalogContainer.innerHTML += `<div> <div>${catalog}</div> 
   <button data-id="${idTag}">Delete</button> 
-  <button class="check">${readB}</button> </div>`;
+  <button id="${idTag}" class="check">${readB}</button> </div>`;
 };
 
 catalogContainer.addEventListener("click", function (e) {
@@ -66,20 +67,26 @@ catalogContainer.addEventListener("click", function (e) {
     console.log(myLibrary);
   }
   if (e.target.classList.contains("check")) {
-    if (readB === true) {
-      readB = false;
+    const findBook = myLibrary.find(function (el) {
+      return el.id === e.target.getAttribute("id");
+    });
+    findBook.toggle();
+    console.log(findBook);
+    if (readB === "Read") {
+      readB = "Not read";
       e.target.textContent = "Not read";
+      // myLibrary.
     } else {
       e.target.textContent = "Read";
-      readB = true;
+      readB = "Read";
     }
   }
 });
 
-readBox.addEventListener("change", function () {
-  if (readBox.checked) {
-  }
-});
+Book.prototype.toggle = function () {
+  if (this.read === true) this.read = false;
+  else this.read = true;
+};
 
 //// overlay and transition
 buttonNew.addEventListener("click", function () {
