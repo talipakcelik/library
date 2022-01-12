@@ -1,3 +1,8 @@
+/*
+- Spacing System (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
+
 * {
   margin: 0;
   padding: 0;
@@ -13,20 +18,28 @@ body {
   font-size: 2.4rem;
   line-height: 1;
   font-weight: 400;
-  color: #555; /* body içinde yer alan textlerin color'u */
+  color: #087f5b; /* body içinde yer alan textlerin color'u */
   /**/
 }
 
 .container {
+  /* display: flex;
+  justify-content: space-between;
+  align-content: center; */
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
   z-index: 1;
   max-width: 70%;
-  height: 20rem;
+  height: 25rem;
+  padding: 2.4rem 4.4rem;
 }
 
 .container.active {
   transform: translate(-50%, -50%) scale(1);
+}
+
+.new-book {
+  padding: 1.6rem 3.2rem;
 }
