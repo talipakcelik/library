@@ -26,7 +26,6 @@ function addBookToLibrary() {
   const page = Number(textAreaPage.value);
 
   const book1 = new Book(title, author, page);
-  console.log(book1);
   myLibrary.push(book1);
 }
 
@@ -65,10 +64,10 @@ const newCard = function () {
 
 catalogContainer.addEventListener("click", function (e) {
   if (e.target.classList.contains("delete")) {
-    myLibrary.splice(
-      document.querySelector(".delete").getAttribute("data-index"),
-      1
-    );
+    index--;
+    myLibrary.splice(e.target.getAttribute("data-index"), 1);
+    e.target.parentNode.remove();
+    console.log(myLibrary);
   }
 });
 
