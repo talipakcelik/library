@@ -26,17 +26,13 @@ function addBookToLibrary() {
   const author = textAreaAuthor.value;
   const page = textAreaPage.value;
   const read = readBox.checked;
-
+  //
   const book1 = new Book(title, author, page, read);
   myLibrary.push(book1);
 }
 
 buttonSubmit.addEventListener("click", function (e) {
-  if (
-    textAreaTitle.value.length > 0 &&
-    textAreaAuthor.value.length > 0 &&
-    textAreaPage.value.length > 0
-  ) {
+  if (textAreaTitle.value.length > 0 && textAreaAuthor.value.length > 0) {
     addBookToLibrary();
     loopBooks();
     newCard();
@@ -54,7 +50,7 @@ const loopBooks = function () {
   const values = Object.values(myLibrary);
 
   for (const { title, author, pages, id, read } of values) {
-    catalog = `${title} ${author} ${pages}`;
+    catalog = `<em>${title}</em> <br> ${author} <br> ${pages}`;
     idTag = id;
     if (read === true) readCheck = "Read";
     else readCheck = "Not read";
@@ -62,9 +58,9 @@ const loopBooks = function () {
 };
 
 const newCard = function () {
-  catalogContainer.innerHTML += `<div> <div>${catalog}</div> 
-  <button data-id="${idTag}">Delete</button> 
-  <button id="${idTag}" class="check">${readCheck}</button> </div>`;
+  catalogContainer.innerHTML += `<div class="books"> <div class="text">${catalog}</div>
+  <ion-icon name="trash-outline" data-id="${idTag}" class="delete-icon"></ion-icon>
+  <button id="${idTag}" class="${readBox.checked}">${readCheck}</button></div>`;
 };
 
 catalogContainer.addEventListener("click", function (e) {
@@ -75,7 +71,11 @@ catalogContainer.addEventListener("click", function (e) {
     });
     console.log(myLibrary);
   }
-  if (e.target.classList.contains("check")) {
+  if (
+    e.target.classList.contains("true") ||
+    e.target.classList.contains("false")
+  ) {
+    e.target.classList.toggle("toggle");
     const findBook = myLibrary.find(function (el) {
       return el.id === e.target.getAttribute("id");
     });
