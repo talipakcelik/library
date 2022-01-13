@@ -161,7 +161,7 @@ footer {
   font-size: 1.4rem;
   font-weight: 300;
   align-items: center;
-  color: #96f2d7;
+  color: #eafcf7;
   background-color: #332c2f;
 }
 
@@ -174,7 +174,7 @@ span:active {
 .github-icon {
   width: 3rem;
   height: 3rem;
-  color: #96f2d7;
+  color: #eafcf7;
 }
 
 .github-icon:hover {
