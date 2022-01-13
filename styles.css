@@ -6,17 +6,15 @@ header {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  /**/
-  height: 9.6rem; /*padding eklemek yerine neden uzunluğunu artırdık*/
-  /*sticky olması için, sayfada scroll down yapsak da aynı yerde kalmış olsun*/
+  height: 9.6rem;
   padding: 0 4.8rem;
-  border: 1px solid;
+  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }
-
-/* main {
-  background-color: #fdf2e9;
-  padding: 4.8rem 0 9.6rem 0; 
-} */
+a {
+  text-decoration: none;
+  color: #087f5b;
+  font-weight: 500;
+}
 
 .section-1 {
   display: flex;
@@ -31,6 +29,10 @@ header {
   background-color: #ffdeeb;
   border: none;
   border-radius: 9px;
+  cursor: pointer;
+  box-shadow: 0 0 0 0.8rem #e6c8d4;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .container {
@@ -39,7 +41,6 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* gap: 5rem; */
   transition: 0.3s ease-in-out;
   font-size: 1.8rem;
   border: none;
@@ -49,17 +50,89 @@ header {
   border: none;
   display: block;
   color: inherit;
-  background-color: #e3fafc;
+  background-color: #96f2d7;
   font-family: inherit;
   border-radius: 9px;
   padding: 0.6rem 1.2rem;
   font-weight: 500;
+  cursor: pointer;
 }
 #title,
 #author,
 #page {
   border: none;
   padding: 0.6rem 1.2rem;
+  border-radius: 9px;
+}
+.books-container {
+  display: flex;
+  /* justify-content: space-around; */
+  flex-wrap: wrap;
+  gap: 2.4rem;
+  max-width: 120rem;
+  margin: 2.4rem auto;
+}
+
+.books {
+  background-color: #fffcfd;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* flex-wrap: wrap; */
+  width: 22.08rem;
+  height: 20rem;
+  border: none;
+  border-radius: 9px;
+  gap: 1rem;
+  padding: 0.6rem 1.2rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.text {
+  line-height: 1.6;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.delete-icon {
+  height: 2.4rem;
+  width: 2.4rem;
+  cursor: pointer;
+}
+
+.delete-icon:hover,
+.delete-icon:active {
+  color: #c2255c;
+}
+
+.new-book:hover,
+.new-book:active {
+  background-color: #e6c8d4;
+}
+
+.true,
+.false.toggle {
+  color: #332c2f;
+  background-color: #96f2d7;
+  font-family: inherit;
+  font-weight: 500;
+  border: none;
+  border-radius: 9px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+}
+
+.true.toggle,
+.false {
+  color: #fffcfd;
+  background-color: #c2255c;
+  font-family: inherit;
+  border: none;
+  border-radius: 9px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
 }
 .overlay {
   position: fixed;
