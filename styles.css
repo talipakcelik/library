@@ -105,11 +105,13 @@ a {
 .delete-icon:hover,
 .delete-icon:active {
   color: #c2255c;
+  transition: all 0.3s;
 }
 
 .new-book:hover,
 .new-book:active {
   background-color: #e6c8d4;
+  transition: all 0.3s;
 }
 
 .true,
@@ -149,4 +151,33 @@ a {
 .overlay.active {
   opacity: 1;
   pointer-events: all;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 1rem;
+  font-size: 1.4rem;
+  font-weight: 300;
+  align-items: center;
+  color: #96f2d7;
+  background-color: #332c2f;
+}
+
+span:hover,
+span:active {
+  filter: brightness(180%);
+  transition: all 0.7s;
+}
+
+.github-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #96f2d7;
+}
+
+.github-icon:hover {
+  filter: brightness(180%);
+  transition: all 0.7s;
 }
